@@ -16,10 +16,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func closeButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func changeWeather(_ sender: Any) {
         setWeatherChenge()
         
     }
+    
     func setWeatherChenge() {
         let weatherResult = YumemiWeather.fetchWeatherCondition()
         var imageName = "sunny"

@@ -18,19 +18,27 @@ class ViewController: UIViewController {
     
     @IBAction func changeWeather(_ sender: Any) {
         let weatherResult = YumemiWeather.fetchWeatherCondition()
-        switch weatherResult {
+        var imageName = "sunny"
+        var tintColor = UIColor.red
+        
+        switch weatherResult{
         case "sunny":
-            self.weatherImage.image = UIImage(named: "sunny")
-            self.weatherImage.tintColor = UIColor.red
+            imageName = "sunny"
+            tintColor = UIColor.red
         case "cloudy":
-            self.weatherImage.image = UIImage(named: "cloudy")
-            self.weatherImage.tintColor = UIColor.gray
+            imageName = "cloudy"
+            tintColor = UIColor.gray
         case "rainy":
-            self.weatherImage.image = UIImage(named: "rainy")
-            self.weatherImage.tintColor = UIColor.blue
+            imageName = "rainy"
+            tintColor = UIColor.blue
         default:
             break
         }
+        
+        weatherImage.image = UIImage(named: imageName)
+        weatherImage.tintColor = tintColor
+        
+        
         
         
     }

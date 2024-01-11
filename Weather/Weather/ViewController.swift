@@ -17,6 +17,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func changeWeather(_ sender: Any) {
+        setWeatherChenge()
+        
+    }
+    func setWeatherChenge() {
         let weatherResult = YumemiWeather.fetchWeatherCondition()
         var imageName = "sunny"
         var tintColor = UIColor.red
@@ -37,10 +41,6 @@ class ViewController: UIViewController {
         
         weatherImage.image = UIImage(named: imageName)
         weatherImage.tintColor = tintColor
-        
-        
-        
-        
     }
     
 }

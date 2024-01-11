@@ -68,6 +68,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Reload">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="changeWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZGB-eY-cN6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -82,6 +85,9 @@
                             <constraint firstItem="6wK-gY-Nbf" firstAttribute="top" secondItem="wDG-nS-TWi" secondAttribute="bottom" constant="80" id="zJe-Sr-KtO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="weatherImage" destination="lPZ-9n-ny5" id="uUe-tR-33U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

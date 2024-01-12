@@ -6,30 +6,39 @@
 //
 
 import UIKit
-import YumemiWeather
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController,YumemiDelegate{
+    
+    
+    
+    let yumemitenki = YumemiTenki()
     
     @IBOutlet weak var weatherImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        yumemitenki.delegate = self
         // Do any additional setup after loading the view.
+    }
+    func setWethereImage() {
+        
     }
     
     @IBAction func closeButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func changeWeather(_ sender: Any) {
-        setWeatherChenge()
+        yumemitenki.setYumemiWether()
         
     }
     
-    func setWeatherChenge() {
-        let weatherResult = YumemiWeather.fetchWeatherCondition()
+    
+    func setWethereImage(type:String) {
+        
         var imageName = "sunny"
         var tintColor = UIColor.red
         
-        switch weatherResult{
+        switch type {
         case "sunny":
             imageName = "sunny"
             tintColor = UIColor.red

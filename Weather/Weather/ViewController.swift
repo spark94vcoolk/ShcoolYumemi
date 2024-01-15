@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     func setWethereImage() {
         
     }
-    
+ 
     @IBAction func closeButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -32,6 +32,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: YumemiDelegate {
+    func setErrorMessage(error: String) {
+        let alert = UIAlertController(title: error, message: error, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert,animated: true,completion: nil)
+         
+    }
+  
+    
     func setWethereImage(type:String) {
         
         var imageName = "sunny"
@@ -54,6 +62,8 @@ extension ViewController: YumemiDelegate {
         weatherImage.image = UIImage(named: imageName)
         weatherImage.tintColor = tintColor
     }
+    
+    
 }
 
 

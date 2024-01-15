@@ -10,14 +10,26 @@ import YumemiWeather
 
 protocol YumemiDelegate{
     func setWethereImage(type:String)
+    func setErrorMessage(error:String)
 }
 //処理を任されるクラス
 class YumemiTenki{
     var delegate: YumemiDelegate?
-
+    
     func setYumemiWether(){
-        let weatherResult = YumemiWeather.fetchWeatherCondition()
-        delegate?.setWethereImage(type: weatherResult)
-        //任せる処理（APIを読み込ませる)を記述
+        do {
+            let weatherResult = try YumemiWeather.fetchWeatherCondition(at: "")
+            self.delegate?.setWethereImage(type: weatherResult)
+        } catch YumemiWeatherError.unknownError {
+            let errorMessage = "エラーが発生しました"
+            delegate?.setErrorMessage(error: errorMessage)
+        } catch {//自明なことは省略することが多い。catchの後ろになにもなければ
+            let errorMessage = "other error occured"
+            delegate?.setErrorMessage(error: errorMessage)
+        }
+        
     }
 }
+
+//alertメッセージをDelegateでViewControllerに渡す
+//　ViewControllreでダイヤルボックスを表示させる

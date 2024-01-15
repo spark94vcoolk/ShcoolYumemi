@@ -12,7 +12,8 @@ protocol YumemiDelegate{
     func setWethereImage(type:String)
     func setErrorMessage(error:String)
 }
-//処理を任されるクラス
+
+
 class YumemiTenki{
     var delegate: YumemiDelegate?
     
@@ -29,7 +30,12 @@ class YumemiTenki{
         }
         
     }
+
+    
+    
+    
 }
+
 
 //alertメッセージをDelegateでViewControllerに渡す
 //　ViewControllreでダイヤルボックスを表示させる

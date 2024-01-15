@@ -8,9 +8,7 @@
 import UIKit
 
 
-class ViewController: UIViewController,YumemiDelegate{
-    
-    
+class ViewController: UIViewController {
     
     let yumemitenki = YumemiTenki()
     
@@ -31,8 +29,9 @@ class ViewController: UIViewController,YumemiDelegate{
         yumemitenki.setYumemiWether()
         
     }
-    
-    
+}
+
+extension ViewController: YumemiDelegate {
     func setWethereImage(type:String) {
         
         var imageName = "sunny"
@@ -55,5 +54,10 @@ class ViewController: UIViewController,YumemiDelegate{
         weatherImage.image = UIImage(named: imageName)
         weatherImage.tintColor = tintColor
     }
-    
 }
+
+
+
+
+
+

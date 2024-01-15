@@ -14,7 +14,7 @@ protocol YumemiDelegate{
 //処理を任されるクラス
 class YumemiTenki{
     var delegate: YumemiDelegate?
-    
+
     func setYumemiWether(){
         let weatherResult = YumemiWeather.fetchWeatherCondition()
         delegate?.setWethereImage(type: weatherResult)

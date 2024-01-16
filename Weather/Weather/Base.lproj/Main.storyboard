@@ -109,6 +109,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="tG7-rJ-rUF"/>
                     <connections>
+                        <outlet property="maxTemperatureLabel" destination="7Ea-f8-g9o" id="Y6Y-sr-wWb"/>
+                        <outlet property="minTemperatureLabel" destination="oDL-cb-OB7" id="tiy-oc-AgW"/>
                         <outlet property="weatherImage" destination="lPZ-9n-ny5" id="uUe-tR-33U"/>
                     </connections>
                 </viewController>

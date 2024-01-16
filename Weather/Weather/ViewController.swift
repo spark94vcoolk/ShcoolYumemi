@@ -13,14 +13,14 @@ class ViewController: UIViewController {
     let yumemitenki = YumemiTenki()
     
     @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet weak var maxTemperatureLabel: UILabel!
+    @IBOutlet weak var minTemperatureLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         yumemitenki.delegate = self
         // Do any additional setup after loading the view.
     }
-    func setWethereImage() {
-        
-    }
+    
     
     
     
@@ -38,6 +38,16 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: YumemiDelegate {
+    
+    func setMaxTemperature(max: Int) {
+        maxTemperatureLabel.text = String(max)
+    }
+    
+    func setMinTemperature(min: Int) {
+        minTemperatureLabel.text = String(min)
+    }
+   
+    
     func setErrorMessage(error: String) {
         let alert = UIAlertController(title: error, message: error, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

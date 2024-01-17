@@ -20,20 +20,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(viewWillEnterForeground(_:)),
-//            name: UIApplication.willEnterForegroundNotification,
-//            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(viewWillEnterForeground(_:)),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil)
         yumemitenki.delegate = self
         
     }
     
-//    @objc func viewWillEnterForeground(_ notification: Notification?) {
-//        if (self.isViewLoaded && (self.view.window != nil)) {
-//            yumemitenki.setYumemiWether()
-//        }
-//    }
+    @objc func viewWillEnterForeground(_ notification: Notification?) {       if (self.isViewLoaded && (self.view.window != nil)) {
+        yumemitenki.setYumemiWether()
+    }
+    }
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         

@@ -10,7 +10,7 @@ import YumemiWeather
 
 struct weatherData: Codable {
     var area: String
-    var data: String
+    var date: String
 }
 
 
@@ -26,7 +26,7 @@ class YumemiTenki{
     
     var delegate: YumemiDelegate?
     
-    let tokyoData = weatherData(area: "tokyo", data: "2020-04-01T12:00:00+09:00")
+    let tokyoData = weatherData(area: "tokyo", date: "2020-04-01T12:00:00+09:00")
     
     func setYumemiWether(){
         do {
@@ -54,7 +54,10 @@ class YumemiTenki{
             
             
         } catch YumemiWeatherError.unknownError {
-            let errorMessage = "エラーが発生しました"
+            let errorMessage = "unknownエラーが発生しました"
+            delegate?.setErrorMessage(error: errorMessage)
+        } catch YumemiWeatherError.invalidParameterError {
+            let errorMessage = "invalidエラーが発生しました"
             delegate?.setErrorMessage(error: errorMessage)
         } catch {
             let errorMessage = "other error occured"

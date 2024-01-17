@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func closeButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     @IBAction func changeWeather(_ sender: Any) {
         yumemitenki.setYumemiWether()

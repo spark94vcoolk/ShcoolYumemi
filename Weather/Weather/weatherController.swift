@@ -8,6 +8,11 @@
 import UIKit
 import YumemiWeather
 
+struct weatherData:Codable {
+    var area: String
+    var data: String
+}
+
 
 protocol YumemiDelegate{
     func setWethereImage(type:String)
@@ -19,16 +24,26 @@ protocol YumemiDelegate{
 
 class YumemiTenki{
     var delegate: YumemiDelegate?
+    let tokyoData = weatherData(area: "tokyo", data: "2020-04-01T12:00:00+09:00")
     
     func setYumemiWether(){
-        //self.delegate?.setWethereImage(type: weatherResult)
-        let requestJson = """
-                    {
-                        "area": "tokyo", "date": "2020-04-01T12:00:00+09:00"
-                    }
-                    """
+        
+        //        let requestJson = """
+        //                            {
+        //                                "area": "tokyo", "date": "2020-04-01T12:00:00+09:00"
+        //                            }
+        //                            """
         do {
-            let weatherCondition = try YumemiWeather.fetchWeather(requestJson)
+            let encoder = JSONEncoder()
+            let JsonTokyoData = try encoder.encode(tokyoData)//tryに！をつけなくてよくするためにguard let をつかってエラーの場合も記述してあげる。
+            //let JsonData = try JSONEncoder().encode(requestJson)  と1行にしても良い
+            guard let tokyoDataJsonString = String(data: JsonTokyoData, encoding: .utf8)
+            else {
+                return
+            }
+            
+            let weatherCondition = try YumemiWeather.fetchWeather(tokyoDataJsonString)
+            
             guard let jsonData = weatherCondition.data(using: .utf8),
                   let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
                   let maxTemperature = json["max_temperature"] as? Int,
@@ -37,14 +52,14 @@ class YumemiTenki{
             else {
                 return
             }
-
+            
             delegate?.setMaxTemperature(max: maxTemperature)
             delegate?.setMinTemperature(min: minTemperature)
             delegate?.setWethereImage(type: weatherConditions)
             
-//            print(requestJson)
-//            print(minTemperature)
-//            print(weatherConditions)
+            //            print(requestJson)
+            //            print(minTemperature)
+            //            print(weatherConditions)
             
         } catch YumemiWeatherError.unknownError {
             let errorMessage = "エラーが発生しました"

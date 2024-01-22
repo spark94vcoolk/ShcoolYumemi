@@ -10,12 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     let yumemitenki = YumemiTenki()
+    
     
     
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
+    @IBOutlet weak var reloadIndicate: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,19 +30,24 @@ class ViewController: UIViewController {
             object: nil)
         yumemitenki.delegate = self
         
+        self.reloadIndicate.hidesWhenStopped = true
     }
     
-    @objc func viewWillEnterForeground(_ notification: Notification?) {       if (self.isViewLoaded && (self.view.window != nil)) {
-        yumemitenki.setYumemiWether()
-    }
+    @objc func viewWillEnterForeground(_ notification: Notification?) {
+        if (self.isViewLoaded && (self.view.window != nil)) {
+            yumemitenki.setYumemiWether()
+        }
     }
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         
     }
     @IBAction func changeWeather(_ sender: Any) {
-        yumemitenki.setYumemiWether()
         
+        yumemitenki.setYumemiWether()
+        DispatchQueue.main.async {
+            self.reloadIndicate.startAnimating()
+        }
     }
     
 }
@@ -47,18 +55,25 @@ class ViewController: UIViewController {
 extension ViewController: YumemiDelegate {
     
     func setMaxTemperature(max: Int) {
-        maxTemperatureLabel.text = String(max)
+        DispatchQueue.main.async {
+            self.maxTemperatureLabel.text = String(max)
+        }
     }
     
     func setMinTemperature(min: Int) {
-        minTemperatureLabel.text = String(min)
+        DispatchQueue.main.async  {
+            self.minTemperatureLabel.text = String(min)
+        }
     }
     
     
     func setErrorMessage(error: String) {
-        let alert = UIAlertController(title: error, message: error, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert,animated: true,completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: error, message: error, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert,animated: true,completion: nil)
+        }
+        
         
     }
     
@@ -81,16 +96,13 @@ extension ViewController: YumemiDelegate {
         default:
             break
         }
-        
-        weatherImage.image = UIImage(named: imageName)
-        weatherImage.tintColor = tintColor
+        DispatchQueue.main.async {
+            self.weatherImage.image = UIImage(named: imageName)
+            self.weatherImage.tintColor = tintColor
+        }
+        DispatchQueue.main.async {
+            self.reloadIndicate.stopAnimating()
+        }
     }
     
-    
 }
-
-
-
-
-
-

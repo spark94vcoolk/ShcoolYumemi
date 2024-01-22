@@ -94,15 +94,21 @@
                                     <action selector="changeWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZGB-eY-cN6"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="DsI-ea-nmQ">
+                                <rect key="frame" x="186.66666666666666" y="569.33333333333337" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bfc-7p-kOx" firstAttribute="top" secondItem="wDG-nS-TWi" secondAttribute="bottom" constant="80" id="5Zn-B3-kM8"/>
+                            <constraint firstItem="DsI-ea-nmQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CKg-D2-iGc"/>
+                            <constraint firstItem="6wK-gY-Nbf" firstAttribute="top" secondItem="DsI-ea-nmQ" secondAttribute="bottom" constant="25" id="SAe-9c-NnG"/>
                             <constraint firstItem="6wK-gY-Nbf" firstAttribute="centerX" secondItem="7Ea-f8-g9o" secondAttribute="centerX" id="atZ-Wg-OwY"/>
                             <constraint firstItem="wDG-nS-TWi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fpF-mY-yy7"/>
                             <constraint firstItem="wDG-nS-TWi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="l3G-1J-BnX"/>
                             <constraint firstItem="bfc-7p-kOx" firstAttribute="centerX" secondItem="oDL-cb-OB7" secondAttribute="centerX" id="tB1-Xe-bWk"/>
+                            <constraint firstItem="DsI-ea-nmQ" firstAttribute="top" secondItem="wDG-nS-TWi" secondAttribute="bottom" constant="35" id="wtI-O3-LF2"/>
                             <constraint firstItem="wDG-nS-TWi" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="zGP-pa-mBe"/>
                             <constraint firstItem="6wK-gY-Nbf" firstAttribute="top" secondItem="wDG-nS-TWi" secondAttribute="bottom" constant="80" id="zJe-Sr-KtO"/>
                         </constraints>
@@ -111,6 +117,7 @@
                     <connections>
                         <outlet property="maxTemperatureLabel" destination="7Ea-f8-g9o" id="Y6Y-sr-wWb"/>
                         <outlet property="minTemperatureLabel" destination="oDL-cb-OB7" id="tiy-oc-AgW"/>
+                        <outlet property="reloadIndicate" destination="DsI-ea-nmQ" id="vs3-oi-UGT"/>
                         <outlet property="weatherImage" destination="lPZ-9n-ny5" id="uUe-tR-33U"/>
                     </connections>
                 </viewController>

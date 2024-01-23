@@ -10,10 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     let yumemitenki = YumemiTenki()
-    
-    
     
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
@@ -23,14 +20,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //yumemitenki.delegate = self
+        
+        self.reloadIndicate.hidesWhenStopped = true
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(viewWillEnterForeground(_:)),
             name: UIApplication.willEnterForegroundNotification,
             object: nil)
-        yumemitenki.delegate = self
         
-        self.reloadIndicate.hidesWhenStopped = true
     }
     
     @objc func viewWillEnterForeground(_ notification: Notification?) {
@@ -49,7 +48,6 @@ class ViewController: UIViewController {
             self.reloadIndicate.startAnimating()
         }
     }
-    
 }
 
 extension ViewController: YumemiDelegate {
@@ -66,17 +64,13 @@ extension ViewController: YumemiDelegate {
         }
     }
     
-    
     func setErrorMessage(error: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: error, message: error, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert,animated: true,completion: nil)
         }
-        
-        
     }
-    
     
     func setWethereImage(type:String) {
         
@@ -104,5 +98,4 @@ extension ViewController: YumemiDelegate {
             self.reloadIndicate.stopAnimating()
         }
     }
-    
 }

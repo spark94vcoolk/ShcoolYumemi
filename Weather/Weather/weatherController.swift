@@ -11,7 +11,7 @@ struct weatherData: Codable {
     var area: String
     var date: String
 }
-struct wetheherRespnce: Codable {
+struct WeatherResponce: Codable {
     let weather_condition:String
     let max_temperature: Int
     let min_temperature: Int
@@ -38,10 +38,10 @@ class YumemiTenki{
                 }
                 
                 let decoder = JSONDecoder()
-                let wetheherRespnce = try decoder.decode(wetheherRespnce.self,from: JsonTokyoData)
+                let responce = try decoder.decode(WeatherResponce.self,from: jsonData)
                 
                 DispatchQueue.main.async {
-                    completion(.success((weatherResponse.weather_condition, weatherResponse.max_temperature, weatherResponse.min_temperature)))
+                    completion(.success((responce.weather_condition, responce.max_temperature, responce.min_temperature)))
                 }
             } catch {
                 DispatchQueue.main.async {

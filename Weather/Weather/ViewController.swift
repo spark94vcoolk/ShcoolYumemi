@@ -19,9 +19,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //yumemitenki.delegate = self
-        
+    
         reloadIndicate.hidesWhenStopped = true
         
         NotificationCenter.default.addObserver(
@@ -34,22 +32,26 @@ class ViewController: UIViewController {
     
     @objc func viewWillEnterForeground(_ notification: Notification?) {
         if (self.isViewLoaded && (self.view.window != nil)) {
-            reloadWeather()
-        }
-    }
-    func reloadWeather() {
-        reloadIndicate.startAnimating()
-        yumemitenki.setYumemiWether { result in
-            
-            self.reloadIndicate.stopAnimating()
-            
-            switch result {
-            case .success(let (weather, max, min)):
-                self.complitionWeather(weather: weather, max: max, min: min)
-            case .failure(let error):
-                self.comlitionWeatherError(alert: "Error: \(error.localizedDescription)")
+            Task {
+                await reloadWeather()
             }
         }
+    }
+    func reloadWeather() async {
+        
+        reloadIndicate.startAnimating()
+        
+        let result = await yumemitenki.setYumemiWether()
+        
+        self.reloadIndicate.stopAnimating()
+        
+        switch result {
+        case .success(let (weather, max, min)):
+            self.complitionWeather(weather: weather, max: max, min: min)
+        case .failure(let error):
+            self.comlitionWeatherError(alert: "Error: \(error.localizedDescription)")
+        }
+        
     }
     
     @IBAction func closeButton(_ sender: Any) {
@@ -57,7 +59,9 @@ class ViewController: UIViewController {
         
     }
     @IBAction func changeWeather(_ sender: Any) {
-        reloadWeather()
+        Task {
+            await reloadWeather()
+        }
     }
     
     func comlitionWeatherError(alert: String) {
@@ -84,7 +88,6 @@ class ViewController: UIViewController {
         default:
             break
         }
-        
         self.weatherImage.image = UIImage(named: imageName)
         self.weatherImage.tintColor = tintColor
         self.maxTemperatureLabel.text = String(max)

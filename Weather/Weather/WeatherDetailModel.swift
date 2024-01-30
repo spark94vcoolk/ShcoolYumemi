@@ -7,17 +7,8 @@
 import UIKit
 import YumemiWeather
 
-struct weatherData: Codable {
-    var area: String
-    var date: String
-}
-struct WeatherResponce: Codable {
-    let weather_condition:String
-    let max_temperature: Int
-    let min_temperature: Int
-}
 
-class YumemiTenki{
+class WeatherDetailModel{
     
     func setYumemiWether() async -> Result<(String,Int,Int), Error > {
         let tokyoData = weatherData(area: "tokyo", date: "2020-04-01T12:00:00+09:00")

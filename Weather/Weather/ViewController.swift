@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let yumemitenki = YumemiTenki()
+    let yumemitenki = WeatherDetailModel()
     
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var maxTemperatureLabel: UILabel!

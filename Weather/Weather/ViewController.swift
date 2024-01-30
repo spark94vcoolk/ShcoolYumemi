@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     let yumemitenki = WeatherDetailModel()
+    var allArea: weatherListResponce?
     
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
@@ -19,8 +20,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         reloadIndicate.hidesWhenStopped = true
+        
+        showData()
         
         NotificationCenter.default.addObserver(
             self,
@@ -52,6 +55,30 @@ class ViewController: UIViewController {
             self.comlitionWeatherError(alert: "Error: \(error.localizedDescription)")
         }
         
+    }
+    
+    func showData() {
+        guard let detailArea = self.allArea else { return }
+        
+        var weatherName = "sunny"
+        var tintColor = UIColor.red
+        switch allArea?.info.weather_condition {
+        case "sunny":
+            weatherName = "sunny"
+            tintColor = UIColor.red
+        case "cloudy":
+            weatherName = "cloudy"
+            tintColor = UIColor.gray
+        case "rainy":
+            weatherName = "rainy"
+            tintColor = UIColor.blue
+        default:
+            break
+        }
+        self.weatherImage.image = UIImage(named: weatherName)
+        self.weatherImage.tintColor = tintColor
+        self.maxTemperatureLabel.text = String(detailArea.info.max_temperature)
+        self.minTemperatureLabel.text = String(detailArea.info.min_temperature)
     }
     
     @IBAction func closeButton(_ sender: Any) {

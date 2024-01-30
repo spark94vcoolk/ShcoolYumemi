@@ -11,7 +11,7 @@ import YumemiWeather
 
 class WeatherListModel {
     
-    func setWeatherList() async -> Result<WeatherResponce, Error > {
+    func setWeatherList() async -> Result<[weatherListResponce], Error > {
         let date = Date().ISO8601Format() //現在の日本の時刻
         let weatherAreaList = weatherList(areas: [], date: date)
         do {
@@ -23,7 +23,7 @@ class WeatherListModel {
             }
             
             let weatherInfo = try await YumemiWeather.asyncFetchWeatherList(areasDataJsonString)
-            
+            print(weatherInfo)
             guard let ListjsonData = weatherInfo.data(using: .utf8) else {
                 return .failure(YumemiWeatherError.unknownError)
                 

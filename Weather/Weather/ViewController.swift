@@ -21,6 +21,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = allArea?.area.rawValue //rawValueは配列の中の情報全部持ってきてくれる
+        /* if let areaName = self?.area {
+        navigationItem.title = areaName.rawValue
+         }
+    */
+        
         reloadIndicate.hidesWhenStopped = true
         
         showData()

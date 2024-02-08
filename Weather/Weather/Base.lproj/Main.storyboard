@@ -6,9 +6,74 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Collection View Controller-->
+        <scene sceneID="m8b-A3-ajx">
+            <objects>
+                <viewController id="u9X-eH-5rS" customClass="UICollectionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mVv-G0-9MP" customClass="CollectionViewCell" customModule="Weather" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MXu-a4-DZD">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hlr-gm-7cp">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="EVu-xN-xIE">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3U8-qb-WRH">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h6P-Jq-2pN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="h6P-Jq-2pN" secondAttribute="height" multiplier="1:1" id="qCk-y5-Ksy"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="h6P-Jq-2pN" firstAttribute="leading" secondItem="3U8-qb-WRH" secondAttribute="leading" id="DO0-Gr-mz6"/>
+                                                <constraint firstAttribute="trailing" secondItem="h6P-Jq-2pN" secondAttribute="trailing" id="Wcw-ih-50W"/>
+                                                <constraint firstItem="h6P-Jq-2pN" firstAttribute="top" secondItem="3U8-qb-WRH" secondAttribute="top" id="izb-mV-0Gy"/>
+                                                <constraint firstAttribute="bottom" secondItem="h6P-Jq-2pN" secondAttribute="bottom" id="uL0-Sj-uvQ"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="eAJ-Yx-hsY"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="X9P-Lq-Inw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="X9P-Lq-Inw" firstAttribute="bottom" secondItem="MXu-a4-DZD" secondAttribute="bottom" id="DSM-Mp-2Wg"/>
+                            <constraint firstItem="X9P-Lq-Inw" firstAttribute="trailing" secondItem="MXu-a4-DZD" secondAttribute="trailing" id="IbJ-Y8-NNq"/>
+                            <constraint firstItem="MXu-a4-DZD" firstAttribute="leading" secondItem="X9P-Lq-Inw" secondAttribute="leading" id="Lzv-MM-qDO"/>
+                            <constraint firstItem="MXu-a4-DZD" firstAttribute="top" secondItem="X9P-Lq-Inw" secondAttribute="top" id="jne-9v-f9t"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="weatherIcon" destination="EVu-xN-xIE" id="Co0-Cj-X8W"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="B6D-lX-AZA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xew-Vk-1Oj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-724.4274809160305" y="711.97183098591552"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Euh-aS-bcy">
             <objects>
@@ -18,12 +83,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="bwr-sl-aQg" kind="relationship" relationship="rootViewController" id="uUF-uO-St9"/>
+                        <segue destination="u9X-eH-5rS" kind="show" id="dSd-Jb-a8P"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bld-DE-ts0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1755" y="4"/>
+            <point key="canvasLocation" x="-1746" y="4"/>
         </scene>
         <!--Start Page View Controller-->
         <scene sceneID="Sad-cf-d0A">
@@ -34,7 +99,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-fh-Jhh">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="x2M-v9-qq1" detailTextLabel="vEO-md-qos" imageView="i2f-Bw-WFe" style="IBUITableViewCellStyleSubtitle" id="dlA-DN-Gec">
@@ -64,9 +129,6 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" identifier="toDetail" id="OYF-q4-UPv"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

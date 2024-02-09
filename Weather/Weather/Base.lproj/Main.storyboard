@@ -13,13 +13,13 @@
         <!--Collection View Controller-->
         <scene sceneID="m8b-A3-ajx">
             <objects>
-                <viewController id="u9X-eH-5rS" customClass="UICollectionViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mVv-G0-9MP" customClass="CollectionViewCell" customModule="Weather" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                <viewController id="u9X-eH-5rS" customClass="CollectionViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mVv-G0-9MP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MXu-a4-DZD">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hlr-gm-7cp">
                                     <size key="itemSize" width="128" height="128"/>
@@ -28,7 +28,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="EVu-xN-xIE">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="startCollectionViewCell" id="EVu-xN-xIE" customClass="WeatherCollectionVIewCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3U8-qb-WRH">
@@ -50,7 +50,8 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="eAJ-Yx-hsY"/>
+                                            <outlet property="weatherImageView" destination="h6P-Jq-2pN" id="7yu-kK-NGF"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="goToDetail" id="eAJ-Yx-hsY"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -64,15 +65,15 @@
                             <constraint firstItem="MXu-a4-DZD" firstAttribute="leading" secondItem="X9P-Lq-Inw" secondAttribute="leading" id="Lzv-MM-qDO"/>
                             <constraint firstItem="MXu-a4-DZD" firstAttribute="top" secondItem="X9P-Lq-Inw" secondAttribute="top" id="jne-9v-f9t"/>
                         </constraints>
-                        <connections>
-                            <outlet property="weatherIcon" destination="EVu-xN-xIE" id="Co0-Cj-X8W"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="B6D-lX-AZA"/>
+                    <connections>
+                        <outlet property="weaterIcon" destination="MXu-a4-DZD" id="SEN-iT-2bu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xew-Vk-1Oj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-724.4274809160305" y="711.97183098591552"/>
+            <point key="canvasLocation" x="-705" y="711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Euh-aS-bcy">
@@ -83,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="u9X-eH-5rS" kind="show" id="dSd-Jb-a8P"/>
+                        <segue destination="u9X-eH-5rS" kind="relationship" relationship="rootViewController" id="ecg-zz-T1W"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bld-DE-ts0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -129,6 +130,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="22l-cD-2V4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -253,6 +257,9 @@
             <point key="canvasLocation" x="101.5267175572519" y="3.5211267605633805"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="eAJ-Yx-hsY"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="todetail" width="128" height="128"/>
         <namedColor name="AccentColor">

@@ -30,7 +30,6 @@ class WeatherListModel {
             }
             let weatherListDecoder = JSONDecoder()
             let responce = try weatherListDecoder.decode([weatherListResponce].self,from: ListjsonData)
-            
             return .success(responce)
         } catch {
             return .failure(error)

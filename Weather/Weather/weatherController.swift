@@ -21,10 +21,10 @@ class YumemiTenki{
     var delegate: YumemiDelegate?
     
     func setYumemiWether(){
-        //self.delegate?.setWethereImage(type: weatherResult)
+   
         let requestJson = """
                     {
-                        "area": "tokyo", "date": "2020-04-01T12:00:00+09:00"
+                        "area": "tokyo", "data": "2020-04-01T12:00:00+09:00"
                     }
                     """
         do {
@@ -42,10 +42,6 @@ class YumemiTenki{
             delegate?.setMinTemperature(min: minTemperature)
             delegate?.setWethereImage(type: weatherConditions)
             
-//            print(requestJson)
-//            print(minTemperature)
-//            print(weatherConditions)
-            
         } catch YumemiWeatherError.unknownError {
             let errorMessage = "エラーが発生しました"
             delegate?.setErrorMessage(error: errorMessage)
@@ -58,6 +54,3 @@ class YumemiTenki{
     
     
 }
-
-//alertメッセージをDelegateでViewControllerに渡す
-//　ViewControllreでダイヤルボックスを表示させる

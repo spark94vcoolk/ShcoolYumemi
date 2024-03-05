@@ -16,7 +16,6 @@ protocol YumemiDelegate{
     func setMinTemperature(min:Int)
 }
 
-
 class YumemiTenki{
     var delegate: YumemiDelegate?
     
@@ -24,7 +23,7 @@ class YumemiTenki{
    
         let requestJson = """
                     {
-                        "area": "tokyo", "data": "2020-04-01T12:00:00+09:00"
+                        "area": "tokyo", "date": "2020-04-01T12:00:00+09:00"
                     }
                     """
         do {
